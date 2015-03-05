@@ -9,32 +9,28 @@ var Tree = function(value){
   return newTree;
 };
 
-
-
-
-
 var treeMethods = {};
 
 treeMethods.addChild = function(value){
-	var child = Object.create(Tree);
+	var child = Tree(value);
 	child.value = value;
-	this.children.push(child);
+	console.log(child);
+	this.children.push(child);	
 };
 
 treeMethods.contains = function(target){
-	if(this.children !== null){
-		for(var i = 0; i < this.children.length; i++){
-			if(this.children[i].value === target){
-				return true;
-			} else {
-				if(this.children[i].children){
-					contains(this.children[i].children);
-				}
-			}
-		return false;	
+	var result=false;
+
+	var childFinder = function(node){	
+		if(node.value === target){
+			return result = true;
+		}
+		for(var i = 0; i < node.children.length; i++){
+			childFinder(node.children[i]);
 		}
 	}
-	return false;
+	childFinder(this);
+	return result;
 };
 
 
