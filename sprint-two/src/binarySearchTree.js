@@ -40,7 +40,7 @@ var BinarySearchTree = function(value){
 				flag = true;
 			} else if(value > current.value){
 				current = current.right;
-			} else if(value < current.value){
+			} else {
 				current = current.left;
 			}
 		}
