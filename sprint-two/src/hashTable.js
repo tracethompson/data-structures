@@ -2,16 +2,34 @@ var HashTable = function(){
   this._limit = 8;
   this._storage = LimitedArray(this._limit);
 };
-/***
-* 1st if (index is empty) - push nested array which makes the index an array
-* else (index already has stored value) - push key value array into index array   
-*
-*                                         */
+/****************** 
+    INSERT  ----
+if (index is empty) - 
+set the index array (outer array) and 
+push the nested key value array (inner array) 
+
+else (index already has stored value) - 
+push key value array into index array
+
+
+    RETRIEVE ----   
+if (storage is empty) - 
+return null
+
+else -
+1) iterate through the index array
+2) for each index array check to see if its first value is the key
+3) if so then return the keys value pair (which is the next value over)
+
+
+    REMOVE ----
+trash control on desired index
+                  **************/
 
 HashTable.prototype.insert = function(k, v){
   var i = getIndexBelowMaxForKey(k, this._limit);
   if (!this._storage[i]) {
-    this._storage[i]=[[k,v]];
+    this._storage[i]=[[k,v]]; 
   }
   else{
     this._storage[i].push([k,v]);
@@ -33,7 +51,6 @@ HashTable.prototype.retrieve = function(k){
 HashTable.prototype.remove = function(k){
 	var i=getIndexBelowMaxForKey(k,this._limit);
 	this._storage[i]=null;
-
 };
 
 
