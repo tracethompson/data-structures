@@ -1,21 +1,29 @@
-var LinkedList = function(){
+ irvlrevar LinkedList = function(){
   var list = {};
   list.head = null;
   list.tail = null;
 
+/*********
+      - ADD TO TAIL -
+initialize new nodes , settting values and dependencies 
+
+if there isn't a head - the newly created node is the head & the tail  
+else - assign the tail to the next node
+                      **********/
+
   list.addToTail = function(value){
-    var newNode = Object.create(Node); // if there is not a head ---- the new tail becomes the head
-    newNode.value = value; // allows list.tail to keep reference of the node
+    var newNode = Object.create(Node);
+    newNode.value = value;
     newNode.next=null;
 
     if(list.head === null){
-      list.head = newNode;
-      list.tail = newNode; //allows list.head to keep reference of the node 
+      list.head = newNode;        // because list.tail and list.head are referencing the same node
+      list.tail = newNode;        // all we have to do is assign list.tail.next and redefine tail 
     }
     else{
-      list.tail.next = newNode;
-      list.tail=newNode;
-    }
+      list.tail.next = newNode;  // for visual sake -- lets say list.Tale is [4][tail] and newNode is [5]
+      list.tail = newNode;       // we're saying [4][tail]---->[5]
+    }                            // now pass the tail to [5] | [4][x]--->[5][tail] 
   };
 
   list.removeHead = function(){
@@ -36,7 +44,7 @@ var LinkedList = function(){
         return true;
       }
       else{
-      currentNode = currentNode.next
+        currentNode = currentNode.next
       }
     }
     return false;

@@ -3,6 +3,7 @@ var BinarySearchTree = function(value){
 	tree= new BTree(value);
 	//tree.root.value=value;
 
+	
 	tree.insert = function(value){
 		var current=tree;
 		var node= new BTree(value);
@@ -71,16 +72,7 @@ var BinarySearchTree = function(value){
 		this.left=null;
 		this.right=null;
 	}
-/*
-var Node = function(value){
-  
 
-  this.value = value;
-  this.left=null;
-  this.right=null;
-
-};
-*/
 
 /*
  * Complexity: What is the time complexity of the above functions?
